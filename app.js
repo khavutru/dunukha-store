@@ -1,47 +1,87 @@
-window.likePost = async function(postId){
+/* APP V2 - PHẦN 1 */
 
-try{
+import { auth, db } from "./firebase.js";
 
-const user =
-auth.currentUser;
+import {
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+signOut,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
-if(!user){
+import {
+doc,
+setDoc,
+getDoc,
+collection,
+addDoc,
+getDocs,
+query,
+orderBy,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
-alert("Hãy đăng nhập");
+let selectedUser = null;
 
+/* AUTH */
+
+window.register = async function(){
+
+const email =
+document.getElementById("email").value.trim();
+
+const password =
+document.getElementById("password").value.trim();
+
+if(!email || !password){
+alert("Nhập email và mật khẩu");
 return;
-
 }
 
-const postRef =
-doc(db,"posts",postId);
+const result =
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
 
-const postSnap =
-await getDoc(postRef);
-
-if(!postSnap.exists()) return;
-
-const data =
-postSnap.data();
+const user =
+result.user;
 
 await setDoc(
-postRef,
+doc(db,"users",user.uid),
 {
-...data,
-likes:(data.likes || 0)+1,
-lastLikeBy:user.uid,
-lastLikeAt:new Date().toISOString()
+uid:user.uid,
+email:user.email,
+nickname:user.email.split("@")[0],
+avatar:"🌱",
+bio:"",
+followers:0,
+following:0,
+createdAt:new Date().toISOString()
 }
 );
 
-await loadFeed();
+};
 
-}catch(error){
+window.login = async function(){
 
-console.log(error);
+const email =
+document.getElementById("email").value.trim();
 
-alert(error.message);
+const password =
+document.getElementById("password").value.trim();
 
-}
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+};
+
+window.logoutUser = async function(){
+
+await signOut(auth);
 
 };
