@@ -1,4 +1,20 @@
-function register() {
+import {
+auth,
+db
+} from "./firebase.js";
+
+import {
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+signOut
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+import {
+doc,
+setDoc
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+window.register = async function() {
 
 const email =
 document.getElementById("email").value;
@@ -6,28 +22,52 @@ document.getElementById("email").value;
 const password =
 document.getElementById("password").value;
 
-alert(
-"Đăng ký sẽ được kết nối Firebase ở bước tiếp theo.\n\nEmail: " +
-email
+const userCredential =
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
 );
-}
 
-function login() {
+const user =
+userCredential.user;
+
+await setDoc(
+doc(db, "users", user.uid),
+{
+uid: user.uid,
+email: user.email,
+nickname: email.split("@")[0],
+bio: "",
+badge: "🌱 Thành viên mới",
+verified: false,
+createdAt: new Date().toISOString()
+}
+);
+
+alert("Đăng ký thành công");
+};
+
+window.login = async function() {
 
 const email =
 document.getElementById("email").value;
 
-alert(
-"Đăng nhập sẽ được kết nối Firebase ở bước tiếp theo.\n\nEmail: " +
-email
+const password =
+document.getElementById("password").value;
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
 );
-}
 
-function logoutUser() {
+alert("Đăng nhập thành công");
+};
 
-document.getElementById(
-"authStatus"
-).innerText =
-"Đã đăng xuất";
+window.logoutUser = async function() {
 
-}
+await signOut(auth);
+
+alert("Đã đăng xuất");
+};
