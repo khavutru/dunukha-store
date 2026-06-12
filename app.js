@@ -25,23 +25,49 @@ if (!content) {
     return;
 }
 
-const post = document.createElement("div");
+let posts =
+    JSON.parse(localStorage.getItem("dunukha_posts") || "[]");
 
-post.className = "post";
+posts.unshift({
+    nickname,
+    content
+});
 
-post.innerHTML = `
-    <h3>${nickname}</h3>
-    <p>${content}</p>
-    <p>❤️ 0 | 🤝 0 | 💡 0 | 🌱 0</p>
-`;
+localStorage.setItem(
+    "dunukha_posts",
+    JSON.stringify(posts)
+);
 
-document
-    .getElementById("posts")
-    .prepend(post);
+renderPosts();
 
-document
-    .getElementById("postContent")
-    .value = "";
+document.getElementById("postContent").value = "";
+
+}
+
+function renderPosts() {
+let posts =
+JSON.parse(localStorage.getItem("dunukha_posts") || "[]");
+
+let html = "";
+
+posts.forEach(post => {
+    html += `
+    <div class="post">
+        <h3>${post.nickname}</h3>
+        <p>${post.content}</p>
+
+        <p>
+        ❤️ Ái mộ (0)
+        &nbsp;&nbsp;
+        🤝 Tôi cũng vậy (0)
+        &nbsp;&nbsp;
+        💡 Hữu ích (0)
+        </p>
+    </div>
+    `;
+});
+
+document.getElementById("posts").innerHTML = html;
 
 }
 
@@ -53,5 +79,7 @@ if (nickname) {
     document.getElementById("welcome").innerText =
         "Xin chào " + nickname + "!";
 }
+
+renderPosts();
 
 };
