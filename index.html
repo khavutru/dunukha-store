@@ -2,9 +2,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dunukha Community</title>
-</head>
-<body><h1>Dunukha Community</h1><p>Nơi câu chuyện được lắng nghe.</p><input id="nickname" placeholder="Nhập nickname"><button onclick="saveNickname()">
+<title>Dunukha Community</title><style>
+body{
+    font-family: Arial, sans-serif;
+    max-width:800px;
+    margin:auto;
+    padding:20px;
+    background:#111;
+    color:white;
+}
+
+input, textarea{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+button{
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+.post{
+    border:1px solid #333;
+    padding:15px;
+    margin-top:15px;
+    border-radius:10px;
+}
+</style></head><body><h1>Dunukha Community</h1><p>Nơi câu chuyện được lắng nghe.</p><input id="nickname" placeholder="Nhập nickname"><button onclick="saveNickname()">
 Lưu nickname
-</button><p id="welcome"></p><script src="app.js"></script></body>
+</button><p id="welcome"></p><hr><h2>Đăng bài</h2><textarea
+id="postContent"
+placeholder="Bạn đang nghĩ gì?"
+rows="5"></textarea><button onclick="createPost()">
+Đăng bài
+</button><div id="posts"></div><script src="app.js"></script></body>
 </html>
