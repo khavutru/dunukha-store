@@ -1,16 +1,122 @@
-<!DOCTYPE html><html lang="vi">
-<head>
+<!DOCTYPE html><html lang="vi"><head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DUNUKHA</title>
-</head><body><h1>DUNUKHA</h1><input id="email" type="email" placeholder="Email"><input id="password" type="password" placeholder="Mật khẩu"><button onclick="register()">Đăng ký</button>
-<button onclick="login()">Đăng nhập</button>
-<button onclick="logoutUser()">Đăng xuất</button>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>DUNUKHA</title><style>
 
-<hr><textarea
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#111827;
+color:white;
+font-family:Arial,sans-serif;
+}
+
+.header{
+background:#1f2937;
+padding:15px;
+border-bottom:1px solid #374151;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#10b981;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#1f2937;
+padding:20px;
+border-radius:16px;
+margin-bottom:20px;
+}
+
+input,
+textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#374151;
+color:white;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#10b981;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+#authStatus{
+margin-top:10px;
+color:#9ca3af;
+}
+
+.post{
+background:#1f2937;
+padding:15px;
+border-radius:16px;
+margin-top:15px;
+}
+
+</style></head><body><div class="header">
+<div class="logo">
+🌱 DUNUKHA
+</div>
+</div><div class="container"><div class="card"><h2>🔐 Tài khoản</h2><input
+id="email"
+type="email"
+placeholder="Email">
+
+<input
+id="password"
+type="password"
+placeholder="Mật khẩu">
+
+<button onclick="register()">
+Đăng ký
+</button><button onclick="login()">
+Đăng nhập
+</button><button onclick="logoutUser()">
+Đăng xuất
+</button><div id="authStatus">
+❌ Chưa đăng nhập
+</div></div><div class="card"><h2>👤 Hồ sơ</h2><input
+id="nickname"
+placeholder="Nickname">
+
+<input
+id="avatar"
+placeholder="Avatar 🌌">
+
+<textarea
+id="bio"
+rows="3"
+placeholder="Giới thiệu bản thân"></textarea><button onclick="saveProfile()">
+Lưu hồ sơ
+</button></div><div class="card"><h2>📝 Đăng bài</h2><textarea
 id="postContent"
+rows="5"
 placeholder="Bạn đang nghĩ gì?"
-></textarea><button onclick="createPost()">Đăng bài</button>
-
-<div id="posts"></div><script type="module" src="./auth.js"></script><script type="module" src="./posts.js"></script></body>
+></textarea><button onclick="createPost()">
+Đăng bài
+</button></div><div id="posts"></div></div><script type="module" src="./firebase.js"></script><script type="module" src="./auth.js"></script><script type="module" src="./profile.js"></script><script type="module" src="./posts.js"></script></body>
 </html>
