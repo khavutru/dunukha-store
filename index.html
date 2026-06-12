@@ -3,6 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DUNUKHA</title><style>
+
 *{
 margin:0;
 padding:0;
@@ -18,8 +19,6 @@ color:white;
 .header{
 background:#1f2937;
 padding:15px;
-position:sticky;
-top:0;
 border-bottom:1px solid #374151;
 }
 
@@ -31,7 +30,7 @@ color:#10b981;
 
 .menu{
 display:flex;
-gap:15px;
+gap:10px;
 margin-top:10px;
 overflow-x:auto;
 }
@@ -48,11 +47,13 @@ margin:auto;
 padding:20px;
 }
 
-.profile{
+.profile,
+.card,
+.post{
 background:#1f2937;
-padding:20px;
+padding:15px;
 border-radius:16px;
-margin-bottom:20px;
+margin-bottom:15px;
 }
 
 .avatar{
@@ -67,14 +68,8 @@ font-size:32px;
 margin-bottom:10px;
 }
 
-.card{
-background:#1f2937;
-padding:15px;
-border-radius:16px;
-margin-bottom:15px;
-}
-
-input,textarea{
+input,
+textarea{
 width:100%;
 padding:12px;
 margin-top:10px;
@@ -88,38 +83,55 @@ button{
 background:#10b981;
 color:white;
 border:none;
-padding:12px 20px;
+padding:12px;
 border-radius:10px;
 margin-top:10px;
 cursor:pointer;
-}
-
-.post{
-background:#1f2937;
-padding:15px;
-border-radius:16px;
-margin-top:15px;
+width:100%;
 }
 
 .reactions{
-margin-top:10px;
 display:flex;
-gap:15px;
+gap:10px;
 flex-wrap:wrap;
+margin-top:10px;
 }
-</style></head><body><div class="header">
-<div class="logo">🌱 DUNUKHA</div><div class="menu">
+
+</style></head><body><div class="header"><div class="logo">
+🌱 DUNUKHA
+</div><div class="menu">
 <span>🏠 Trang chủ</span>
 <span>🔥 Thịnh hành</span>
 <span>📚 Đã lưu</span>
 <span>💬 Tin nhắn</span>
 <span>🔔 Thông báo</span>
 <span>👤 Hồ sơ</span>
-</div>
-</div><div class="container"><div class="profile"><div class="avatar">🌌</div><h2>KhaVutru ✓</h2><p>📸 Chuyên gia kể chuyện</p>
+</div></div><div class="container"><div class="profile"><div class="avatar">
+🌌
+</div><h2>KhaVutru ✓</h2><p>📸 Chuyên gia kể chuyện</p>
 <p>✍️ Thánh cmt dạo</p>
 <p>🌱 Người gieo mầm</p><br><p>📝 Bài viết: 0</p>
-<p>❤️ Ái mộ: 0</p></div><div class="card"><h3>Nơi câu chuyện được lắng nghe.</h3><input id="nickname" placeholder="Nhập nickname"><button onclick="saveNickname()">
+<p>❤️ Ái mộ: 0</p></div><div class="card"><h3>🔐 Tài khoản</h3><input
+id="email"
+type="email"
+placeholder="Email">
+
+<input
+id="password"
+type="password"
+placeholder="Mật khẩu">
+
+<button onclick="register()">
+Đăng ký
+</button><button onclick="login()">
+Đăng nhập
+</button><button onclick="logoutUser()">
+Đăng xuất
+</button><p id="authStatus"></p></div><div class="card"><h3>Nơi câu chuyện được lắng nghe.</h3><input
+id="nickname"
+placeholder="Nhập nickname">
+
+<button onclick="saveNickname()">
 Lưu nickname
 </button><p id="welcome"></p></div><div class="card"><h3>📝 Đăng bài</h3><textarea
 id="postContent"
@@ -127,5 +139,5 @@ rows="5"
 placeholder="Bạn đang nghĩ gì?"
 ></textarea><button onclick="createPost()">
 Đăng bài
-</button></div><div id="posts"></div></div><script type="module" src="firebase.js"></script><script src="app.js"></script></body>
+</button></div><div id="posts"></div></div><script type="module" src="firebase.js"></script><script type="module" src="auth.js"></script><script src="app.js"></script></body>
 </html>
