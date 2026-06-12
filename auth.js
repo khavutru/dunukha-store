@@ -57,12 +57,15 @@ createdAt:new Date().toISOString()
 }
 );
 
-alert("Đăng ký thành công");
+alert(
+"Đăng ký thành công\n\n" +
+user.email
+);
 
 }catch(error){
 
 alert(
-"Lỗi:\n\n" +
+"REGISTER ERROR\n\n" +
 error.code +
 "\n\n" +
 error.message
@@ -76,6 +79,8 @@ console.log(error);
 
 window.login = async function(){
 
+alert("Đã bấm đăng nhập");
+
 try{
 
 const email =
@@ -84,20 +89,28 @@ document.getElementById("email").value.trim();
 const password =
 document.getElementById("password").value.trim();
 
+const result =
 await signInWithEmailAndPassword(
 auth,
 email,
 password
 );
 
-alert("Đăng nhập thành công");
+alert(
+"Đăng nhập thành công\n\n" +
+result.user.email
+);
 
 }catch(error){
 
 alert(
-"Lỗi đăng nhập:\n\n" +
+"LOGIN ERROR\n\n" +
+error.code +
+"\n\n" +
 error.message
 );
+
+console.log(error);
 
 }
 
@@ -113,7 +126,10 @@ alert("Đăng xuất thành công");
 
 }catch(error){
 
-alert(error.message);
+alert(
+"LOGOUT ERROR\n\n" +
+error.message
+);
 
 }
 
@@ -129,7 +145,7 @@ if(!status) return;
 if(user){
 
 status.innerHTML =
-"✅ Đang đăng nhập: " +
+"✅ Đang đăng nhập:<br>" +
 user.email;
 
 }else{
