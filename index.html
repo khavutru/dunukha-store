@@ -5,17 +5,21 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>DUNUKHA</title>
 
-<link rel="stylesheet" href="./style.css">
+<link
+rel="stylesheet"
+href="./style.css">
 
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- LOGIN PAGE -->
 
 <div id="loginPage">
 
@@ -23,7 +27,7 @@
 
 <img
 src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600"
->
+alt="preview">
 
 </div>
 
@@ -52,9 +56,7 @@ placeholder="Mật khẩu">
 </button>
 
 <div id="authStatus">
-
-Chưa đăng nhập
-
+❌ Chưa đăng nhập
 </div>
 
 </div>
@@ -65,8 +67,9 @@ Chưa đăng nhập
 
 <div
 id="appPage"
-style="display:none"
->
+style="display:none">
+
+<!-- TOPBAR -->
 
 <header class="topbar">
 
@@ -74,12 +77,11 @@ style="display:none"
 🌱 DUNUKHA
 </div>
 
-<div>
+<div class="top-actions">
 
 <button
 class="small-btn"
-onclick="logoutUser()"
->
+onclick="logoutUser()">
 
 Đăng xuất
 
@@ -93,36 +95,34 @@ onclick="logoutUser()"
 
 <div class="stories">
 
-<div class="story">
-🌱
-</div>
-
-<div class="story">
-🚀
-</div>
-
-<div class="story">
-🔥
-</div>
-
-<div class="story">
-🌌
-</div>
-
-<div class="story">
-✨
-</div>
+<div class="story">🌱</div>
+<div class="story">🚀</div>
+<div class="story">🔥</div>
+<div class="story">🌌</div>
+<div class="story">✨</div>
+<div class="story">💎</div>
+<div class="story">🌍</div>
 
 </div>
+
+<!-- MAIN -->
+
+<div class="main-layout">
+
+<!-- LEFT -->
+
+<div class="left-column">
 
 <!-- PROFILE -->
 
-<div class="profile-card">
+<div class="card">
+
+<h2>
+👤 Hồ sơ
+</h2>
 
 <div class="avatar-big">
-
 🌱
-
 </div>
 
 <input
@@ -135,8 +135,7 @@ placeholder="Giới thiệu bản thân">
 </textarea>
 
 <button
-onclick="saveProfile()"
->
+onclick="saveProfile()">
 
 Lưu hồ sơ
 
@@ -146,7 +145,11 @@ Lưu hồ sơ
 
 <!-- CREATE POST -->
 
-<div class="create-post">
+<div class="card">
+
+<h2>
+➕ Đăng bài
+</h2>
 
 <input
 id="imageUrl"
@@ -158,8 +161,7 @@ placeholder="Bạn đang nghĩ gì?">
 </textarea>
 
 <button
-onclick="createPost()"
->
+onclick="createPost()">
 
 Đăng bài
 
@@ -175,9 +177,85 @@ onclick="createPost()"
 
 </div>
 
-<script type="module" src="./firebase.js"></script>
+<!-- RIGHT -->
 
-<script type="module" src="./app.js"></script>
+<div class="right-column">
+
+<!-- USERS -->
+
+<div class="card">
+
+<h2>
+👥 Người dùng
+</h2>
+
+<div id="usersList">
+
+Đang tải...
+
+</div>
+
+</div>
+
+<!-- PROFILE VIEW -->
+
+<div class="card">
+
+<h2>
+🔍 Xem hồ sơ
+</h2>
+
+<div id="viewProfile">
+
+Chọn người dùng để xem
+
+</div>
+
+</div>
+
+<!-- CHAT -->
+
+<div class="card">
+
+<h2>
+💬 Tin nhắn
+</h2>
+
+<div id="chatBox">
+
+Chọn người để chat
+
+</div>
+
+<textarea
+id="messageInput"
+placeholder="Nhập tin nhắn...">
+</textarea>
+
+<button
+onclick="sendMessage()">
+
+Gửi tin nhắn
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script
+type="module"
+src="./firebase.js">
+</script>
+
+<script
+type="module"
+src="./app.js">
+</script>
 
 </body>
 
