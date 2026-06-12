@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dunukha Community</title><style>
+<title>DUNUKHA</title><style>
 body{
     font-family: Arial, sans-serif;
     max-width:800px;
@@ -12,14 +12,22 @@ body{
     color:white;
 }
 
+h1{
+    color:#34d399;
+}
+
 input, textarea{
     width:100%;
     padding:10px;
     margin:10px 0;
+    border-radius:8px;
+    border:none;
 }
 
 button{
     padding:10px 20px;
+    border:none;
+    border-radius:8px;
     cursor:pointer;
 }
 
@@ -28,13 +36,14 @@ button{
     padding:15px;
     margin-top:15px;
     border-radius:10px;
+    background:#1a1a1a;
 }
-</style></head><body><h1>Dunukha Community</h1><p>Nơi câu chuyện được lắng nghe.</p><input id="nickname" placeholder="Nhập nickname"><button onclick="saveNickname()">
+</style></head><body><h1>🌱 DUNUKHA</h1><p>Nơi câu chuyện được lắng nghe.</p><input id="nickname" placeholder="Nhập nickname"><button onclick="saveNickname()">
 Lưu nickname
 </button><p id="welcome"></p><hr><h2>Đăng bài</h2><textarea
 id="postContent"
 placeholder="Bạn đang nghĩ gì?"
 rows="5"></textarea><button onclick="createPost()">
 Đăng bài
-</button><div id="posts"></div><script src="app.js"></script></body>
+</button><div id="posts"></div><script type="module" src="firebase.js"></script><script src="app.js"></script></body>
 </html>
