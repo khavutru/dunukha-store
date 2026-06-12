@@ -1,20 +1,6 @@
-import {
-auth,
-db
-} from "./firebase.js";
-
-import {
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-signOut
-} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-
-import {
-doc,
-setDoc
-} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
-
 window.register = async function() {
+
+try {
 
 const email =
 document.getElementById("email").value;
@@ -46,28 +32,18 @@ createdAt: new Date().toISOString()
 );
 
 alert("Đăng ký thành công");
-};
 
-window.login = async function() {
+} catch(error) {
 
-const email =
-document.getElementById("email").value;
-
-const password =
-document.getElementById("password").value;
-
-await signInWithEmailAndPassword(
-auth,
-email,
-password
+alert(
+"Lỗi: " +
+error.code +
+"\n\n" +
+error.message
 );
 
-alert("Đăng nhập thành công");
-};
+console.log(error);
 
-window.logoutUser = async function() {
+}
 
-await signOut(auth);
-
-alert("Đã đăng xuất");
 };
