@@ -1,12 +1,12 @@
-import { auth, db } from "./firebase.js";
+import { db, auth } from "./firebase.js";
 
 import {
 doc,
 getDoc,
-updateDoc
+setDoc
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
-window.saveProfile = async function() {
+window.saveProfile = async function(){
 
 const user = auth.currentUser;
 
@@ -15,25 +15,32 @@ alert("Hãy đăng nhập");
 return;
 }
 
-await updateDoc(
+const nickname =
+document.getElementById("nickname").value;
+
+const avatar =
+document.getElementById("avatar").value;
+
+const bio =
+document.getElementById("bio").value;
+
+await setDoc(
 doc(db,"users",user.uid),
 {
-nickname:
-document.getElementById("nickname").value,
-
-avatar:
-document.getElementById("avatar").value,
-
-bio:
-document.getElementById("bio").value
-}
+uid:user.uid,
+email:user.email,
+nickname:nickname,
+avatar:avatar,
+bio:bio
+},
+{merge:true}
 );
 
 alert("Lưu hồ sơ thành công");
 
 };
 
-window.loadProfile = async function() {
+window.loadProfile = async function(){
 
 const user = auth.currentUser;
 
@@ -52,9 +59,11 @@ document.getElementById("nickname").value =
 data.nickname || "";
 
 document.getElementById("avatar").value =
-data.avatar || "🌱";
+data.avatar || "";
 
 document.getElementById("bio").value =
 data.bio || "";
 
 };
+
+auth.onAuthStateChanged?.(() => {});
