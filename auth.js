@@ -1,3 +1,5 @@
+alert("AUTH LOADED");
+
 import { auth, db } from "./firebase.js";
 
 import {
@@ -14,17 +16,22 @@ setDoc
 
 window.register = async function(){
 
+alert("Đã bấm đăng ký");
+
 try{
 
 const email =
-document.getElementById("email").value;
+document.getElementById("email").value.trim();
 
 const password =
-document.getElementById("password").value;
+document.getElementById("password").value.trim();
 
 if(!email || !password){
+
 alert("Nhập email và mật khẩu");
+
 return;
+
 }
 
 const userCredential =
@@ -54,7 +61,12 @@ alert("Đăng ký thành công");
 
 }catch(error){
 
-alert(error.message);
+alert(
+"Lỗi:\n\n" +
+error.code +
+"\n\n" +
+error.message
+);
 
 console.log(error);
 
@@ -67,10 +79,10 @@ window.login = async function(){
 try{
 
 const email =
-document.getElementById("email").value;
+document.getElementById("email").value.trim();
 
 const password =
-document.getElementById("password").value;
+document.getElementById("password").value.trim();
 
 await signInWithEmailAndPassword(
 auth,
@@ -82,7 +94,10 @@ alert("Đăng nhập thành công");
 
 }catch(error){
 
-alert(error.message);
+alert(
+"Lỗi đăng nhập:\n\n" +
+error.message
+);
 
 }
 
@@ -104,9 +119,7 @@ alert(error.message);
 
 };
 
-onAuthStateChanged(
-auth,
-(user)=>{
+onAuthStateChanged(auth,(user)=>{
 
 const status =
 document.getElementById("authStatus");
@@ -126,5 +139,4 @@ status.innerHTML =
 
 }
 
-}
-);
+});
