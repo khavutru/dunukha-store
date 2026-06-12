@@ -6,7 +6,10 @@ addDoc,
 getDocs,
 query,
 orderBy,
-serverTimestamp
+serverTimestamp,
+doc,
+getDoc,
+updateDoc
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 window.createPost = async function () {
@@ -26,23 +29,71 @@ alert("Hãy đăng nhập");
 return;
 }
 
+const userSnap =
+await getDoc(
+doc(db,"users",user.uid)
+);
+
+const profile =
+userSnap.data();
+
 await addDoc(
-collection(db, "posts"),
+collection(db,"posts"),
 {
-userId: user.uid,
-email: user.email,
-nickname: user.email.split("@")[0],
-content: content,
-likes: 0,
-createdAt: serverTimestamp()
+userId:user.uid,
+email:user.email,
+
+nickname:
+profile?.nickname || "Người dùng",
+
+avatar:
+profile?.avatar || "🌱",
+
+content:content,
+
+likes:0,
+
+createdAt:
+serverTimestamp()
 }
 );
 
-document.getElementById("postContent").value = "";
+document.getElementById(
+"postContent"
+).value = "";
 
 alert("Đăng bài thành công");
 
 loadPosts();
+
+};
+
+window.likePost = async function(id){
+
+const posts =
+await getDocs(
+collection(db,"posts")
+);
+
+posts.forEach(async(item)=>{
+
+if(item.id===id){
+
+const data =
+item.data();
+
+await updateDoc(
+doc(db,"posts",id),
+{
+likes:(data.likes || 0)+1
+}
+);
+
+loadPosts();
+
+}
+
+});
 
 };
 
@@ -53,8 +104,8 @@ document.getElementById("posts");
 
 const q =
 query(
-collection(db, "posts"),
-orderBy("createdAt", "desc")
+collection(db,"posts"),
+orderBy("createdAt","desc")
 );
 
 const snapshot =
@@ -62,23 +113,27 @@ await getDocs(q);
 
 let html = "";
 
-snapshot.forEach(doc => {
+snapshot.forEach(item => {
 
-const post = doc.data();
+const post =
+item.data();
 
 html += `
-<div class="post">
 
-<h3>🌌 ${post.nickname}</h3>
+<div class="post"><h3>
+${post.avatar || "🌱"}
+${post.nickname || "Người dùng"}
+</h3><p>
+${post.content || ""}
+</p><hr><button
+onclick="likePost('${item.id}')"
 
-<p>${post.content}</p>
-
-<hr>
+«»
 
 ❤️ ${post.likes || 0}
+</button>
 
-</div>
-`;
+</div>`;
 
 });
 
