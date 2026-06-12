@@ -1,1 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DUNUKHA</title>
+
+<link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div id="loginPage">
+
+<div class="phone-preview">
+
+<img
+src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600"
+>
+
+</div>
+
+<div class="login-box">
+
+<h1 class="logo">
+🌱 DUNUKHA
+</h1>
+
+<input
+id="email"
+type="email"
+placeholder="Email">
+
+<input
+id="password"
+type="password"
+placeholder="Mật khẩu">
+
+<button onclick="register()">
+Đăng ký
+</button>
+
+<button onclick="login()">
+Đăng nhập
+</button>
+
+<div id="authStatus">
+
+Chưa đăng nhập
+
+</div>
+
+</div>
+
+</div>
+
+<!-- APP -->
+
+<div
+id="appPage"
+style="display:none"
+>
+
+<header class="topbar">
+
+<div class="top-logo">
+🌱 DUNUKHA
+</div>
+
+<div>
+
+<button
+class="small-btn"
+onclick="logoutUser()"
+>
+
+Đăng xuất
+
+</button>
+
+</div>
+
+</header>
+
+<!-- STORIES -->
+
+<div class="stories">
+
+<div class="story">
+🌱
+</div>
+
+<div class="story">
+🚀
+</div>
+
+<div class="story">
+🔥
+</div>
+
+<div class="story">
+🌌
+</div>
+
+<div class="story">
+✨
+</div>
+
+</div>
+
+<!-- PROFILE -->
+
+<div class="profile-card">
+
+<div class="avatar-big">
+
+🌱
+
+</div>
+
+<input
+id="nickname"
+placeholder="Nickname">
+
+<textarea
+id="bio"
+placeholder="Giới thiệu bản thân">
+</textarea>
+
+<button
+onclick="saveProfile()"
+>
+
+Lưu hồ sơ
+
+</button>
+
+</div>
+
+<!-- CREATE POST -->
+
+<div class="create-post">
+
+<input
+id="imageUrl"
+placeholder="Link ảnh">
+
+<textarea
+id="caption"
+placeholder="Bạn đang nghĩ gì?">
+</textarea>
+
+<button
+onclick="createPost()"
+>
+
+Đăng bài
+
+</button>
+
+</div>
+
+<!-- FEED -->
+
+<div id="feed">
+
+</div>
+
+</div>
+
+<script type="module" src="./firebase.js"></script>
+
+<script type="module" src="./app.js"></script>
+
+</body>
+
+</html>
