@@ -1,143 +1,76 @@
-<!DOCTYPE html><html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DUNUKHA</title><style>
+import { db, auth } from "./firebase.js";
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+import {
+collection,
+addDoc,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+window.createPost = async function () {
+
+const content =
+document.getElementById("postContent").value;
+
+if (!content) {
+alert("Nhập nội dung");
+return;
 }
 
-body{
-background:#111827;
-font-family:Arial,sans-serif;
-color:white;
+if (!auth.currentUser) {
+alert("Hãy đăng nhập");
+return;
 }
 
-.header{
-background:#1f2937;
-padding:15px;
-border-bottom:1px solid #374151;
+await addDoc(
+collection(db, "posts"),
+{
+content: content,
+nickname: auth.currentUser.email.split("@")[0],
+email: auth.currentUser.email,
+userId: auth.currentUser.uid,
+likes: 0,
+createdAt: new Date().toISOString()
+}
+);
+
+alert("Đăng bài thành công");
+
+document.getElementById(
+"postContent"
+).value = "";
+
+loadPosts();
+};
+
+async function loadPosts() {
+
+const snapshot =
+await getDocs(
+collection(db, "posts")
+);
+
+let html = "";
+
+snapshot.forEach(doc => {
+
+const post = doc.data();
+
+html += `
+  <div class="post">
+    <h3>🌌 ${post.nickname}</h3>
+    <p>${post.content}</p>
+    <p>❤️ ${post.likes}</p>
+  </div>
+`;
+
+});
+
+document.getElementById(
+"posts"
+).innerHTML = html;
 }
 
-.logo{
-font-size:28px;
-font-weight:bold;
-color:#10b981;
-}
-
-.menu{
-display:flex;
-gap:10px;
-margin-top:10px;
-overflow-x:auto;
-}
-
-.menu span{
-padding:8px 12px;
-background:#374151;
-border-radius:10px;
-}
-
-.container{
-max-width:900px;
-margin:auto;
-padding:20px;
-}
-
-.profile,
-.card,
-.post{
-background:#1f2937;
-padding:15px;
-border-radius:16px;
-margin-bottom:15px;
-}
-
-.avatar{
-width:80px;
-height:80px;
-border-radius:50%;
-background:#10b981;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:32px;
-margin-bottom:10px;
-}
-
-input,
-textarea{
-width:100%;
-padding:12px;
-margin-top:10px;
-border:none;
-border-radius:10px;
-background:#374151;
-color:white;
-}
-
-button{
-background:#10b981;
-color:white;
-border:none;
-padding:12px;
-border-radius:10px;
-margin-top:10px;
-cursor:pointer;
-width:100%;
-}
-
-.reactions{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:10px;
-}
-
-</style></head><body><div class="header"><div class="logo">
-🌱 DUNUKHA
-</div><div class="menu">
-<span>🏠 Trang chủ</span>
-<span>🔥 Thịnh hành</span>
-<span>📚 Đã lưu</span>
-<span>💬 Tin nhắn</span>
-<span>🔔 Thông báo</span>
-<span>👤 Hồ sơ</span>
-</div></div><div class="container"><div class="profile"><div class="avatar">
-🌌
-</div><h2>KhaVutru ✓</h2><p>📸 Chuyên gia kể chuyện</p>
-<p>✍️ Thánh cmt dạo</p>
-<p>🌱 Người gieo mầm</p><br><p>📝 Bài viết: 0</p>
-<p>❤️ Ái mộ: 0</p></div><div class="card"><h3>🔐 Tài khoản</h3><input
-id="email"
-type="email"
-placeholder="Email">
-
-<input
-id="password"
-type="password"
-placeholder="Mật khẩu">
-
-<button onclick="register()">
-Đăng ký
-</button><button onclick="login()">
-Đăng nhập
-</button><button onclick="logoutUser()">
-Đăng xuất
-</button><p id="authStatus"></p></div><div class="card"><h3>Nơi câu chuyện được lắng nghe.</h3><input
-id="nickname"
-placeholder="Nhập nickname">
-
-<button onclick="saveNickname()">
-Lưu nickname
-</button><p id="welcome"></p></div><div class="card"><h3>📝 Đăng bài</h3><textarea
-id="postContent"
-rows="5"
-placeholder="Bạn đang nghĩ gì?"
-></textarea><button onclick="createPost()">
-Đăng bài
-</button></div><div id="posts"></div></div><script type="module" src="firebase.js"></script><script type="module" src="auth.js"></script><script src="app.js"></script></body>
-</html>
+window.addEventListener(
+"load",
+loadPosts
+);
