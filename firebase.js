@@ -9,7 +9,7 @@ getFirestore
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 const firebaseConfig = {
-apiKey: "API_KEY_CỦA_BẠN",
+apiKey: "AIzaSyCDLlBCUXLxSXb3n4ubjv40EM2jpcodA-c",
 authDomain: "dunukha-community.firebaseapp.com",
 projectId: "dunukha-community",
 storageBucket: "dunukha-community.firebasestorage.app",
@@ -21,3 +21,5 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
+console.log("Firebase Ready");
