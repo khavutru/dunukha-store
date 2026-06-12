@@ -277,11 +277,12 @@ post.image
 
 <div class="post-actions">
 
-❤️
+<button
+onclick="likePost('${item.id}')">
 
-💬
+❤️ ${post.likes || 0}
 
-📤
+</button>
 
 </div>
 
@@ -307,9 +308,35 @@ feed.innerHTML = html;
 
 }
 
-/* =====================
-   STATE
-===================== */
+window.likePost = async function(postId){
+
+const snapshot =
+await getDocs(
+collection(db,"posts")
+);
+
+snapshot.forEach(async(item)=>{
+
+if(item.id === postId){
+
+const data =
+item.data();
+
+await setDoc(
+doc(db,"posts",postId),
+{
+...data,
+likes:(data.likes || 0)+1
+}
+);
+
+loadFeed();
+
+}
+
+});
+
+};
 
 onAuthStateChanged(
 auth,
