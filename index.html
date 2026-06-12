@@ -3,47 +3,129 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DUNUKHA</title><style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
-    font-family: Arial, sans-serif;
-    max-width:800px;
-    margin:auto;
-    padding:20px;
-    background:#111;
-    color:white;
+background:#111827;
+font-family:Arial,sans-serif;
+color:white;
 }
 
-h1{
-    color:#34d399;
+.header{
+background:#1f2937;
+padding:15px;
+position:sticky;
+top:0;
+border-bottom:1px solid #374151;
 }
 
-input, textarea{
-    width:100%;
-    padding:10px;
-    margin:10px 0;
-    border-radius:8px;
-    border:none;
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#10b981;
+}
+
+.menu{
+display:flex;
+gap:15px;
+margin-top:10px;
+overflow-x:auto;
+}
+
+.menu span{
+padding:8px 12px;
+background:#374151;
+border-radius:10px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.profile{
+background:#1f2937;
+padding:20px;
+border-radius:16px;
+margin-bottom:20px;
+}
+
+.avatar{
+width:80px;
+height:80px;
+border-radius:50%;
+background:#10b981;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+margin-bottom:10px;
+}
+
+.card{
+background:#1f2937;
+padding:15px;
+border-radius:16px;
+margin-bottom:15px;
+}
+
+input,textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#374151;
+color:white;
 }
 
 button{
-    padding:10px 20px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
+background:#10b981;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+margin-top:10px;
+cursor:pointer;
 }
 
 .post{
-    border:1px solid #333;
-    padding:15px;
-    margin-top:15px;
-    border-radius:10px;
-    background:#1a1a1a;
+background:#1f2937;
+padding:15px;
+border-radius:16px;
+margin-top:15px;
 }
-</style></head><body><h1>🌱 DUNUKHA</h1><p>Nơi câu chuyện được lắng nghe.</p><input id="nickname" placeholder="Nhập nickname"><button onclick="saveNickname()">
+
+.reactions{
+margin-top:10px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+</style></head><body><div class="header">
+<div class="logo">🌱 DUNUKHA</div><div class="menu">
+<span>🏠 Trang chủ</span>
+<span>🔥 Thịnh hành</span>
+<span>📚 Đã lưu</span>
+<span>💬 Tin nhắn</span>
+<span>🔔 Thông báo</span>
+<span>👤 Hồ sơ</span>
+</div>
+</div><div class="container"><div class="profile"><div class="avatar">🌌</div><h2>KhaVutru ✓</h2><p>📸 Chuyên gia kể chuyện</p>
+<p>✍️ Thánh cmt dạo</p>
+<p>🌱 Người gieo mầm</p><br><p>📝 Bài viết: 0</p>
+<p>❤️ Ái mộ: 0</p></div><div class="card"><h3>Nơi câu chuyện được lắng nghe.</h3><input id="nickname" placeholder="Nhập nickname"><button onclick="saveNickname()">
 Lưu nickname
-</button><p id="welcome"></p><hr><h2>Đăng bài</h2><textarea
+</button><p id="welcome"></p></div><div class="card"><h3>📝 Đăng bài</h3><textarea
 id="postContent"
+rows="5"
 placeholder="Bạn đang nghĩ gì?"
-rows="5"></textarea><button onclick="createPost()">
+></textarea><button onclick="createPost()">
 Đăng bài
-</button><div id="posts"></div><script type="module" src="firebase.js"></script><script src="app.js"></script></body>
+</button></div><div id="posts"></div></div><script type="module" src="firebase.js"></script><script src="app.js"></script></body>
 </html>
