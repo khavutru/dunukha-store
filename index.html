@@ -1,12 +1,39 @@
-<!DOCTYPE html><html lang="vi">
+<!DOCTYPE html>
+<html lang="vi">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>DUNUKHA</title><link rel="stylesheet" href="./style.css"></head>
-<body><header class="header"><div class="logo">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DUNUKHA</title>
+
+<link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
 🌱 DUNUKHA
-</div><div id="authStatus" class="status">
+</div>
+
+<div id="authStatus" class="status">
 ❌ Chưa đăng nhập
-</div></header><div class="container"><!-- AUTH --><div class="card"><h2>🔐 Tài khoản</h2><input
+</div>
+
+</header>
+
+<div class="container">
+
+<!-- TÀI KHOẢN -->
+
+<div class="card">
+
+<h2>🔐 Tài khoản</h2>
+
+<input
 id="email"
 type="email"
 placeholder="Email">
@@ -18,11 +45,25 @@ placeholder="Mật khẩu">
 
 <button onclick="register()">
 Đăng ký
-</button><button onclick="login()">
+</button>
+
+<button onclick="login()">
 Đăng nhập
-</button><button onclick="logoutUser()">
+</button>
+
+<button onclick="logoutUser()">
 Đăng xuất
-</button></div><!-- PROFILE --><div class="card"><h2>👤 Hồ sơ</h2><input
+</button>
+
+</div>
+
+<!-- HỒ SƠ CỦA TÔI -->
+
+<div class="card">
+
+<h2>👤 Hồ sơ của tôi</h2>
+
+<input
 id="nickname"
 placeholder="Nickname">
 
@@ -32,19 +73,74 @@ placeholder="Avatar 🌱">
 
 <textarea
 id="bio"
-rows="3"
+rows="4"
 placeholder="Giới thiệu bản thân">
-</textarea><button onclick="saveProfile()">
-Lưu hồ sơ
-</button></div><!-- CHAT --><div class="card"><h2>💬 Tin nhắn</h2><div id="usersList">Chưa có người dùng
+</textarea>
 
-</div></div><!-- CHAT BOX --><div class="card"><h2>📨 Trò chuyện</h2><div id="chatMessages">Chọn người để nhắn tin
+<button onclick="saveProfile()">
+💾 Lưu hồ sơ
+</button>
 
-</div><textarea
+</div>
+
+<!-- DANH SÁCH NGƯỜI DÙNG -->
+
+<div class="card">
+
+<h2>💬 Người dùng</h2>
+
+<div id="usersList">
+
+Đang tải...
+
+</div>
+
+</div>
+
+<!-- HỒ SƠ NGƯỜI DÙNG -->
+
+<div class="card">
+
+<h2>👤 Hồ sơ người dùng</h2>
+
+<div id="viewProfile">
+
+Chọn người dùng để xem hồ sơ
+
+</div>
+
+</div>
+
+<!-- CHAT -->
+
+<div class="card">
+
+<h2>📨 Trò chuyện</h2>
+
+<div id="chatMessages">
+
+Chọn người để bắt đầu chat
+
+</div>
+
+<textarea
 id="messageInput"
 rows="3"
 placeholder="Nhập tin nhắn...">
-</textarea><button onclick="sendMessage()">
-Gửi tin nhắn
-</button></div></div><script type="module" src="./firebase.js"></script><script type="module" src="./auth.js"></script><script type="module" src="./profile.js"></script><script type="module" src="./chat.js"></script></body>
+</textarea>
+
+<button onclick="sendMessage()">
+📤 Gửi tin nhắn
+</button>
+
+</div>
+
+</div>
+
+<script type="module" src="./firebase.js"></script>
+<script type="module" src="./auth.js"></script>
+<script type="module" src="./profile.js"></script>
+<script type="module" src="./chat.js"></script>
+
+</body>
 </html>
