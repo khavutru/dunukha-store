@@ -11,7 +11,7 @@ window.saveProfile = async function() {
 const user = auth.currentUser;
 
 if(!user){
-alert("Đăng nhập trước");
+alert("Hãy đăng nhập");
 return;
 }
 
@@ -52,7 +52,7 @@ document.getElementById("nickname").value =
 data.nickname || "";
 
 document.getElementById("avatar").value =
-data.avatar || "";
+data.avatar || "🌱";
 
 document.getElementById("bio").value =
 data.bio || "";
