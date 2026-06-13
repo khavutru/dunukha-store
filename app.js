@@ -89,6 +89,24 @@ await signOut(auth);
 
 };
 
+window.saveProfile = async function(){
+
+alert("Profile OK");
+
+};
+
+window.createPost = async function(){
+
+alert("Post OK");
+
+};
+
+window.sendMessage = async function(){
+
+alert("Message OK");
+
+};
+
 onAuthStateChanged(auth,(user)=>{
 
 const loginPage =
