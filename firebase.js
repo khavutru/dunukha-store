@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// 🔁 THAY THẾ BẰNG CẤU HÌNH CỦA BẠN (copy từ Firebase)
+// 🔁 THAY THẾ BẰNG CẤU HÌNH CỦA BẠN
 const firebaseConfig = {
   apiKey: "AIzaSy...",
   authDomain: "...",
