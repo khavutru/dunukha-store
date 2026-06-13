@@ -1,4 +1,4 @@
-alert("APP LOADED");
+
 
 import { auth, db } from "./firebase.js";
 
