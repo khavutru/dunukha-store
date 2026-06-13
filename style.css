@@ -2,7 +2,9 @@
 body { background: #fafafa; display: flex; justify-content: center; }
 #app { max-width: 450px; width: 100%; background: #fff; min-height: 100vh; display: none; flex-direction: column; }
 .header { display: flex; align-items: center; justify-content: space-between; padding: 10px 15px; border-bottom: 1px solid #dbdbdb; background: #fff; position: sticky; top: 0; z-index: 10; }
-.header img.logo { height: 35px; }
+/* Logo Dunukha tự vẽ bằng chữ */
+.logo-text { font-size: 28px; font-weight: 700; color: #262626; letter-spacing: 1px; font-family: 'Segoe UI', cursive; }
+.logo-text span { color: #0095f6; }
 .header .icons i { font-size: 22px; margin-left: 15px; cursor: pointer; }
 .stories { display: flex; gap: 12px; padding: 12px 15px; border-bottom: 1px solid #dbdbdb; overflow-x: auto; background: #fff; }
 .story { display: flex; flex-direction: column; align-items: center; gap: 4px; }
@@ -30,6 +32,7 @@ body { background: #fafafa; display: flex; justify-content: center; }
 .modal-content input, .modal-content textarea { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #dbdbdb; border-radius: 4px; }
 .modal-content button { background: #0095f6; color: #fff; border: none; padding: 10px; border-radius: 8px; width: 100%; font-weight: 600; cursor: pointer; }
 #login-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: #fafafa; }
+#login-screen .logo-text { font-size: 48px; margin-bottom: 20px; }
 #login-screen button { background: #0095f6; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; cursor: pointer; }
 .navbar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 450px; background: #fff; border-top: 1px solid #dbdbdb; display: flex; justify-content: space-around; padding: 10px 0; z-index: 10; }
 .navbar i { font-size: 24px; color: #262626; cursor: pointer; }
