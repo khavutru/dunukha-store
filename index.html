@@ -1,262 +1,58 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>DUNUKHA</title>
-
-<link
-rel="stylesheet"
-href="./style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Instagram của bạn</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
-
 <body>
-
-<!-- LOGIN PAGE -->
-
-<div id="loginPage">
-
-<div class="phone-preview">
-
-<img
-src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600"
-alt="preview">
-
-</div>
-
-<div class="login-box">
-
-<h1 class="logo">
-🌱 DUNUKHA
-</h1>
-
-<input
-id="email"
-type="email"
-placeholder="Email">
-
-<input
-id="password"
-type="password"
-placeholder="Mật khẩu">
-
-<button onclick="register()">
-Đăng ký
-</button>
-
-<button onclick="login()">
-Đăng nhập
-</button>
-
-<div id="authStatus">
-❌ Chưa đăng nhập
-</div>
-
-</div>
-
-</div>
-
-<!-- APP -->
-
-<div
-id="appPage"
-style="display:none">
-
-<!-- TOPBAR -->
-
-<header class="topbar">
-
-<div class="top-logo">
-🌱 DUNUKHA
-</div>
-
-<div class="top-actions">
-
-<button
-class="small-btn"
-onclick="logoutUser()">
-
-Đăng xuất
-
-</button>
-
-</div>
-
-</header>
-
-<!-- STORIES -->
-
-<div class="stories">
-
-<div class="story">🌱</div>
-<div class="story">🚀</div>
-<div class="story">🔥</div>
-<div class="story">🌌</div>
-<div class="story">✨</div>
-<div class="story">💎</div>
-<div class="story">🌍</div>
-
-</div>
-
-<!-- MAIN -->
-
-<div class="main-layout">
-
-<!-- LEFT -->
-
-<div class="left-column">
-
-<!-- PROFILE -->
-
-<div class="card">
-
-<h2>
-👤 Hồ sơ
-</h2>
-
-<div class="avatar-big">
-🌱
-</div>
-
-<input
-id="nickname"
-placeholder="Nickname">
-
-<textarea
-id="bio"
-placeholder="Giới thiệu bản thân">
-</textarea>
-
-<button
-onclick="saveProfile()">
-
-Lưu hồ sơ
-
-</button>
-
-</div>
-
-<!-- CREATE POST -->
-
-<div class="card">
-
-<h2>
-➕ Đăng bài
-</h2>
-
-<input
-id="imageUrl"
-placeholder="Link ảnh">
-
-<textarea
-id="caption"
-placeholder="Bạn đang nghĩ gì?">
-</textarea>
-
-<button
-onclick="createPost()">
-
-Đăng bài
-
-</button>
-
-</div>
-
-<!-- FEED -->
-
-<div id="feed">
-
-</div>
-
-</div>
-
-<!-- RIGHT -->
-
-<div class="right-column">
-
-<!-- USERS -->
-
-<div class="card">
-
-<h2>
-👥 Người dùng
-</h2>
-
-<div id="usersList">
-
-Đang tải...
-
-</div>
-
-</div>
-
-<!-- PROFILE VIEW -->
-
-<div class="card">
-
-<h2>
-🔍 Xem hồ sơ
-</h2>
-
-<div id="viewProfile">
-
-Chọn người dùng để xem
-
-</div>
-
-</div>
-
-<!-- CHAT -->
-
-<div class="card">
-
-<h2>
-💬 Tin nhắn
-</h2>
-
-<div id="chatBox">
-
-Chọn người để chat
-
-</div>
-
-<textarea
-id="messageInput"
-placeholder="Nhập tin nhắn...">
-</textarea>
-
-<button
-onclick="sendMessage()">
-
-Gửi tin nhắn
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<script
-type="module"
-src="./firebase.js">
-</script>
-
-<script
-type="module"
-src="./app.js">
-</script>
-
+  <div id="login-screen">
+    <h2 style="font-family: 'Billabong', cursive; font-size: 48px; margin-bottom: 20px;">Instagram</h2>
+    <button id="google-login"><i class="fab fa-google"></i> Đăng nhập với Google</button>
+  </div>
+
+  <div id="app">
+    <div class="header">
+      <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" alt="Instagram">
+      <div class="icons">
+        <i class="far fa-plus-square" id="btn-add-post" title="Đăng bài"></i>
+        <i class="far fa-heart"></i>
+      </div>
+    </div>
+
+    <div class="stories" id="stories-container">
+      <div class="story" id="story-yourself" style="display:none;">
+        <div class="avatar-ring"><img class="avatar" id="your-avatar" /></div>
+        <span>Bạn</span>
+      </div>
+    </div>
+
+    <div class="feed" id="feed-container"></div>
+
+    <div class="navbar">
+      <i class="fas fa-home active"></i>
+      <i class="far fa-search"></i>
+      <i class="far fa-plus-square" id="btn-add-post-mobile"></i>
+      <i class="far fa-heart"></i>
+      <i class="far fa-user-circle" id="btn-profile"></i>
+    </div>
+  </div>
+
+  <div class="modal" id="post-modal">
+    <div class="modal-content">
+      <h3>Tạo bài viết mới</h3>
+      <input type="text" id="post-image-url" placeholder="Link ảnh (dán URL ảnh online)">
+      <textarea id="post-caption" placeholder="Viết caption..."></textarea>
+      <div style="display:flex; gap:10px;">
+        <button id="btn-submit-post">Đăng</button>
+        <button style="background:#ed4956;" id="btn-close-modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
-
 </html>
