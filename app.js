@@ -19,6 +19,10 @@ orderBy,
 serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
+let selectedUser = null;
+
+/* AUTH */
+
 window.register = async function(){
 
 try{
@@ -28,6 +32,14 @@ document.getElementById("email").value.trim();
 
 const password =
 document.getElementById("password").value.trim();
+
+if(!email || !password){
+
+alert("Nhập email và mật khẩu");
+
+return;
+
+}
 
 const result =
 await createUserWithEmailAndPassword(
@@ -45,7 +57,9 @@ doc(db,"users",user.uid),
 uid:user.uid,
 email:user.email,
 nickname:user.email.split("@")[0],
-bio:""
+bio:"",
+avatar:"🌱",
+createdAt:new Date().toISOString()
 }
 );
 
@@ -89,50 +103,58 @@ await signOut(auth);
 
 };
 
+/* PROFILE */
+
 window.saveProfile = async function(){
 
-alert("Profile OK");
+const user =
+auth.currentUser;
 
-};
+if(!user){
 
-window.createPost = async function(){
+alert("Hãy đăng nhập");
 
-alert("Post OK");
-
-};
-
-window.sendMessage = async function(){
-
-alert("Message OK");
-
-};
-
-onAuthStateChanged(auth,(user)=>{
-
-const loginPage =
-document.getElementById("loginPage");
-
-const appPage =
-document.getElementById("appPage");
-
-if(!loginPage || !appPage) return;
-
-if(user){
-
-loginPage.style.display =
-"none";
-
-appPage.style.display =
-"block";
-
-}else{
-
-loginPage.style.display =
-"flex";
-
-appPage.style.display =
-"none";
+return;
 
 }
 
-});
+await setDoc(
+doc(db,"users",user.uid),
+{
+nickname:
+document.getElementById("nickname").value,
+
+bio:
+document.getElementById("bio").value
+},
+{merge:true}
+);
+
+alert("Đã lưu hồ sơ");
+
+};
+
+async function loadProfile(){
+
+const user =
+auth.currentUser;
+
+if(!user) return;
+
+const snap =
+await getDoc(
+doc(db,"users",user.uid)
+);
+
+if(!snap.exists()) return;
+
+const data =
+snap.data();
+
+document.getElementById("nickname").value =
+data.nickname || "";
+
+document.getElementById("bio").value =
+data.bio || "";
+
+}
