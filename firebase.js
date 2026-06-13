@@ -1,4 +1,3 @@
-alert("FIREBASE LOADED");
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 
